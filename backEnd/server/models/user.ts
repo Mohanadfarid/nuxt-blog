@@ -20,13 +20,21 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: [true,'password is required'],
-      minLength: [8, 'Password must be at least 8 characters'],
-      match:[/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,'week password try something stronger !']
+      required: [true, "password is required"],
+      minLength: [8, "Password must be at least 8 characters"],
+      match: [
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        "week password try something stronger !",
+      ],
     },
     imageUrl: {
       type: String,
       required: true,
+    },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
   },
   {},

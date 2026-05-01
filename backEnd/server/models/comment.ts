@@ -25,6 +25,17 @@ const commentSchema = new Schema(
     commentAttachment: {
       type: String,
     },
+    likes: {
+      type: Number,
+      min: 0,
+      required: true,
+    },
+    likers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {},
 );
