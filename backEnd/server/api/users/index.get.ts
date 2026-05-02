@@ -1,4 +1,4 @@
-
 export default defineEventHandler(async (event) => {
-  return { test: "hello" };
+  return { message: "get all users" };
 });
+  

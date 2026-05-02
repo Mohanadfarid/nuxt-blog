@@ -1,4 +1,3 @@
-
 export default defineEventHandler(async (event) => {
-  return { test: "hello" };
+  return { message: "post create user" };
 });
