@@ -39,7 +39,9 @@ const postSchema = new Schema(
       },
     ],
   },
-  {},
+  {
+    timestamps: true,
+  },
 );
 
 export const Post = defineMongooseModel({

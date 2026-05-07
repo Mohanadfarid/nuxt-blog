@@ -37,7 +37,9 @@ const commentSchema = new Schema(
       },
     ],
   },
-  {},
+  {
+    timestamps: true,
+  },
 );
 
 export const Comment = defineMongooseModel({

@@ -1,4 +1,6 @@
+import { userService } from "../../services";
+
 export default defineEventHandler(async (event) => {
-  return { message: "get all users" };
+  const users = await userService.getUsers();
+  return { message: "get all users", users };
 });
-  

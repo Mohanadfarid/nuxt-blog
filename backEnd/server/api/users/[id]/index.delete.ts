@@ -1,4 +1,9 @@
+import { userRepository } from "~/backEnd/server/repositories";
+
 export default defineEventHandler(async (event) => {
   const userId = getRouterParam(event, "id");
-  return { message: "delete user by id : " + userId };
+  const res = await userRepository.deleteById(userId);
+  
+  console.log(res);
+  return { message: "delete user by id : " + userId, res, success: true };
 });

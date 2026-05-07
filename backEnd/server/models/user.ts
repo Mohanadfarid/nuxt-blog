@@ -37,7 +37,9 @@ const userSchema = new Schema(
       default: false,
     },
   },
-  {},
+  {
+    timestamps: true,
+  },
 );
 
 export const User = defineMongooseModel({

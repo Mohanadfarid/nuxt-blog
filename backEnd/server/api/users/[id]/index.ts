@@ -1,4 +1,8 @@
+import { userService } from "~/backEnd/server/services";
+
 export default defineEventHandler(async (event) => {
   const userId = getRouterParam(event, "id");
-  return { message: "get single user by id : " + userId };
+  const user = await userService.getUserById(userId);
+  console.log(user?.toJSON());
+  return { message: "get single user by id : ", user: user?.toJSON() };
 });
