@@ -28,8 +28,8 @@ const userSchema = new Schema(
       ],
     },
     imageUrl: {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref: "Media",
     },
     isAdmin: {
       type: Boolean,

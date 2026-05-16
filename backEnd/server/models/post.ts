@@ -34,8 +34,8 @@ const postSchema = new Schema(
     ],
     postAttachments: [
       {
-        type: String,
-        required: true,
+        type: Schema.Types.ObjectId,
+        ref: "Media",
       },
     ],
   },

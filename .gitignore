@@ -6,6 +6,9 @@
 .cache
 dist
 
+# storage 
+uploads
+
 # Node dependencies
 node_modules
 

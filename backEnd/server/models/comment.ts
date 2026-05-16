@@ -23,7 +23,8 @@ const commentSchema = new Schema(
       required: true,
     },
     commentAttachment: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: "Media",
     },
     likes: {
       type: Number,

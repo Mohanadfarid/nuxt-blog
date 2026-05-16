@@ -1,13 +1,13 @@
 import { User } from "../models/user";
-import type { CreateUserDto, UpdateUserDto } from "../schemas";
+import type { CreateUserData, UpdateUserDto } from "../schemas";
 
 export const userRepository = {
-  async create(data: CreateUserDto) {
+  async create(data: CreateUserData) {
     return await User.create(data);
   },
 
   async findById(id: string) {
-    return await User.findById(id);
+    return await User.findById(id).populate('imageUrl');
   },
 
   async findAll() {

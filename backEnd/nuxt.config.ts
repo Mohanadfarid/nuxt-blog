@@ -1,10 +1,16 @@
 export default defineNuxtConfig({
-    modules: [
-    'nuxt-mongoose',
-  ], 
+  modules: ["nuxt-mongoose"],
   mongoose: {
     uri: process.env.NUXT_MONGOOSE_URI,
     options: {},
-    modelsDir: 'models',
+    modelsDir: "models",
   },
-})
+  nitro: {
+    storage: {
+      uploads: {
+        driver: "fs",
+        base: "./uploads",
+      },
+    },
+  },
+});

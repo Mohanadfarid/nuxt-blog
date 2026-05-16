@@ -1,5 +1,5 @@
 import { email, z } from "zod";
-
+import type { Types } from "mongoose";
 export const createUserSchema = z.object({
   name: z.string().min(2),
   email: z.email(),
@@ -10,8 +10,8 @@ export const createUserSchema = z.object({
     .regex(/[A-Z]/, "Must contain at least one uppercase letter")
     .regex(/\d/, "Must contain at least one number")
     .regex(/[@$!%*?&]/, "Must contain at least one special character"),
-  imageUrl: z.string(),
-  isAdmin: z.boolean(),
+  isAdmin: z.coerce.boolean(),
+  file: z.file().max(2_000_000).mime(["image/png", "image/jpeg"]),
 });
 
 export const updateUserSchema = z.object({
@@ -29,4 +29,8 @@ export const updateUserSchema = z.object({
 });
 
 export type CreateUserDto = z.infer<typeof createUserSchema>;
+export type CreateUserData = Omit<CreateUserDto, "file"> & {
+  imageUrl: Types.ObjectId;
+};
+
 export type UpdateUserDto = z.infer<typeof updateUserSchema>;
