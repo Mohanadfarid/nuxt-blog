@@ -1,24 +1,16 @@
 import type { H3Event } from "h3";
 import { z } from "zod";
 import { ErrorTypes } from "../types";
+import { httpErrorFactory } from "../errors/httpErrorFactory";
 
 export function validate<T>(
   schema: z.ZodSchema<T>,
   data: unknown,
-  event: H3Event,
 ): T {
   const result = schema.safeParse(data);
   if (!result.success) {
-    setResponseStatus(event, 422);
-    throw createError({
-      message: "Validation failed",
-      status: 422,
-      statusText: "unprocessable entity",
-      data: {
-        type: ErrorTypes.VALIDATION_ERROR,
-        errors: z.flattenError(result.error),
-      },
-    });
+    const errors = z.flattenError(result.error)
+    throw httpErrorFactory.validation(errors)
   }
   return result.data;
 }

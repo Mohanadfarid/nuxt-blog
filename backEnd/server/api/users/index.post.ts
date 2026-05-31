@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   const body = await readFormData(event);
   const data = Object.fromEntries(body.entries());
 
-  const validData = validate<CreateUserDto>(createUserSchema, data, event);
+  const validData = validate<CreateUserDto>(createUserSchema, data);
   
   const user = await userService.createUser(event,validData);
 

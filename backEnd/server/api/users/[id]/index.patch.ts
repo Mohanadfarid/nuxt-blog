@@ -4,7 +4,7 @@ import { userService } from "~/backEnd/server/services";
 export default defineEventHandler(async (event) => {
   const userId = getRouterParam(event, "id");
   const body = await readBody(event);
-  const validData = validate<UpdateUserDto>(updateUserSchema, body, event);
+  const validData = validate<UpdateUserDto>(updateUserSchema, body);
 
   const updatedUser = await userService.updateUser(userId, validData);
   console.log(validData);
