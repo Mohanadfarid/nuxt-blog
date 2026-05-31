@@ -6,25 +6,16 @@ import type { H3Event } from "h3";
 import mongoose from "mongoose";
 
 import { ErrorTypes } from "../types";
+import { httpErrorFactory } from "../errors/httpErrorFactory";
 
 export const userService = {
   async createUser(event: H3Event, data: CreateUserDto) {
     // to do hash the password before its too late :(
 
-
     const emailExist = await userRepository.findByEmail(data.email);
 
     if (emailExist) {
-      setResponseStatus(event, 422);
-      throw createError({
-        message: "Validation failed",
-        status: 422,
-        statusText: "unprocessable entity",
-        data: {
-          type: ErrorTypes.VALIDATION_ERROR,
-          errors: { email: "email is alread used" },
-        },
-      });
+      throw httpErrorFactory.validation({ email: "email is alread used" });
     }
 
     const session = await mongoose.startSession();
@@ -47,6 +38,9 @@ export const userService = {
       await removeFile(storedFileMeta.storedName);
       console.log(storedFileMeta.path);
       console.log("aborting transation u better handle the media delete");
+      console.log(error.message);
+      console.log(error.code);
+      console.log(error);
       throw error;
     } finally {
       await session.endSession();
