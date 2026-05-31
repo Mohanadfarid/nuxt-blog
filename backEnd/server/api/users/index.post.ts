@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
 
   const validData = validate<CreateUserDto>(createUserSchema, data, event);
   
-  const user = await userService.createUser(validData);
+  const user = await userService.createUser(event,validData);
 
   return { message: "post create user", user };
 });

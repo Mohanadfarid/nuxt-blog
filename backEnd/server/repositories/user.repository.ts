@@ -2,14 +2,17 @@ import { User } from "../models/user";
 import type { CreateUserData, UpdateUserDto } from "../schemas";
 
 export const userRepository = {
-  async create(data: CreateUserData) {
-    return await User.create(data);
+  async create(data: CreateUserData, options?: any) {
+    return await User.create([data], options);
   },
 
   async findById(id: string) {
-    return await User.findById(id).populate('imageUrl');
+    return await User.findById(id).populate("imageUrl");
   },
 
+  async findByEmail(email: string) {
+    return await User.findOne({ email: email });
+  },
   async findAll() {
     return await User.find();
   },
