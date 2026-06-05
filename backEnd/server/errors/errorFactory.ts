@@ -10,4 +10,13 @@ export const errorFactory = {
       errors,
     });
   },
+
+  auth(message?: string) {
+    return new AppError({
+      message: message || "invalid email or password",
+      statusCode: 401,
+      type: ErrorTypes.AUTH_ERROR,
+      errors: [],
+    });
+  },
 };

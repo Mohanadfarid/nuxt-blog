@@ -1,7 +1,5 @@
-import { storeFile } from "../../helpers";
 import { createUserSchema, type CreateUserDto } from "../../schemas";
-import { userService } from "../../services";
-import { mediaService } from "../../services/media.service";
+import { authService, userService } from "../../services";
 import { validate } from "../../utils/validate";
 
 export default defineEventHandler(async (event) => {
@@ -9,8 +7,8 @@ export default defineEventHandler(async (event) => {
   const data = Object.fromEntries(body.entries());
 
   const validData = validate<CreateUserDto>(createUserSchema, data);
+  
+  const user = await authService.registerUser(validData);
 
-  const user = await userService.createUser(validData);
-
-  return { message: "post create user", user };
+  return { message: "regiser user", user };
 });

@@ -11,7 +11,7 @@ export const userRepository = {
   },
 
   async findByEmail(email: string) {
-    return await User.findOne({ email: email });
+    return await User.findOne({ email: email }).populate('imageUrl');
   },
   async findAll() {
     return await User.find();

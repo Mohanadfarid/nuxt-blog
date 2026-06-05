@@ -1,6 +1,14 @@
 import { Schema } from "mongoose";
 import { defineMongooseModel } from "#nuxt/mongoose";
 
+export interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  imageUrl?: string;
+  isAdmin: boolean;
+}
+
 const userSchema = new Schema(
   {
     name: {
@@ -21,11 +29,6 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: [true, "password is required"],
-      minLength: [8, "Password must be at least 8 characters"],
-      match: [
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "week password try something stronger !",
-      ],
     },
     imageUrl: {
       type: Schema.Types.ObjectId,
@@ -42,7 +45,7 @@ const userSchema = new Schema(
   },
 );
 
-export const User = defineMongooseModel({
+export const User = defineMongooseModel<IUser>({
   name: "User",
   schema: userSchema,
 });
