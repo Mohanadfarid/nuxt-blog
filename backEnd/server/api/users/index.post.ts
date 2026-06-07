@@ -4,7 +4,7 @@ import { userService } from "../../services";
 import { mediaService } from "../../services/media.service";
 import { validate } from "../../utils/validate";
 
-export default defineEventHandler(async (event) => {
+export default defineAuthHandler(async (event) => {
   const body = await readFormData(event);
   const data = Object.fromEntries(body.entries());
 

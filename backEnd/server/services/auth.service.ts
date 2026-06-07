@@ -6,7 +6,6 @@ import type { H3Event } from "h3";
 
 export const authService = {
   async loginUser(data: LoginUserDto, event: H3Event) {
-
     const user = await userRepository.findByEmail(data.email);
     if (!user) throw httpErrorFactory.auth();
 
@@ -14,17 +13,22 @@ export const authService = {
     if (!passwordValid) throw httpErrorFactory.auth();
 
     // to do handle actual login (session and stuff)
-    console.log(user)
+    console.log(user);
     await setUserSession(event, {
-      user:{
-        id:user.id,
-        name:user.name,
-        email:user.email,
-        imageUrl:user.imageUrl.path
-      }
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        imageUrl: user.imageUrl.path,
+      },
     });
 
     return user;
+  },
+
+  async logoutUser(event: H3Event) {
+    const result = await clearUserSession(event);
+    return result;
   },
 
   async registerUser(data: CreateUserDto) {

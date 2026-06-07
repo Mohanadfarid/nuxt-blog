@@ -1,6 +1,6 @@
 import { userService } from "~/backEnd/server/services";
 
-export default defineEventHandler(async (event) => {
+export default defineAuthHandler(async (event) => {
   const userId = getRouterParam(event, "id");
   const user = await userService.getUserById(userId);
   console.log(user?.toJSON());

@@ -1,7 +1,7 @@
 import { updateUserSchema, type UpdateUserDto } from "~/backEnd/server/schemas";
 import { userService } from "~/backEnd/server/services";
 
-export default defineEventHandler(async (event) => {
+export default defineAuthHandler(async (event) => {
   const userId = getRouterParam(event, "id");
   const body = await readBody(event);
   const validData = validate<UpdateUserDto>(updateUserSchema, body);

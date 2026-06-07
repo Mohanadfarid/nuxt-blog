@@ -1,6 +1,6 @@
 import { userRepository } from "~/backEnd/server/repositories";
 
-export default defineEventHandler(async (event) => {
+export default defineAuthHandler(async (event) => {
   const userId = getRouterParam(event, "id");
   const res = await userRepository.deleteById(userId);
   
