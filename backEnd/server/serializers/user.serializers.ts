@@ -1,8 +1,8 @@
 import { constructUrlbyFilePath } from "../helpers";
 
 export function toUserResponse(user: any) {
-  console.log(user.imageUrl.path)
-  console.log(constructUrlbyFilePath(user.imageUrl.path))
+  console.log(user.profileImage.path)
+  console.log(constructUrlbyFilePath(user.profileImage.path))
   return {
     id: user.id,
     name: user.name,
@@ -10,7 +10,7 @@ export function toUserResponse(user: any) {
     isAdmin: user.isAdmin,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
-    imageUrl: constructUrlbyFilePath(user.imageUrl.path),
+    profileImage: constructUrlbyFilePath(user.profileImage.path),
   };
 }
 

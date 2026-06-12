@@ -33,7 +33,7 @@ export const userService = {
       const validData = {
         ...restOfData,
         password: hashedPassword,
-        imageUrl: createdFile[0]?.id,
+        profileImage: createdFile[0]?.id,
       };
 
       const user = await userRepository.create(validData, { session });

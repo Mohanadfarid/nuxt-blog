@@ -5,7 +5,7 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  imageUrl?: string;
+  profileImage?: string;
   isAdmin: boolean;
 }
 
@@ -30,7 +30,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, "password is required"],
     },
-    imageUrl: {
+    profileImage: {
       type: Schema.Types.ObjectId,
       ref: "Media",
     },

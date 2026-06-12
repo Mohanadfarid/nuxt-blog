@@ -7,14 +7,14 @@ export const userRepository = {
   },
 
   async findById(id: string) {
-    return await User.findById(id).populate("imageUrl");
+    return await User.findById(id).populate("profileImage");
   },
 
   async findByEmail(email: string) {
-    return await User.findOne({ email: email }).populate('imageUrl');
+    return await User.findOne({ email: email }).populate('profileImage');
   },
   async findAll() {
-    return await User.find();
+    return await User.find().populate("profileImage");
   },
 
   async deleteById(id: string) {

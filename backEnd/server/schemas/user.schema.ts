@@ -24,13 +24,13 @@ export const updateUserSchema = z.object({
     .regex(/[A-Z]/, "Must contain at least one uppercase letter")
     .regex(/\d/, "Must contain at least one number")
     .regex(/[@$!%*?&]/, "Must contain at least one special character"),
-  imageUrl: z.string().optional(),
+  file: z.file().max(2_000_000).mime(["image/png", "image/jpeg"]),
   isAdmin: z.boolean().optional(),
 });
 
 export type CreateUserDto = z.infer<typeof createUserSchema>;
 export type CreateUserData = Omit<CreateUserDto, "file"> & {
-  imageUrl: Types.ObjectId;
+  profileImage: Types.ObjectId;
 };
 
 export type UpdateUserDto = z.infer<typeof updateUserSchema>;

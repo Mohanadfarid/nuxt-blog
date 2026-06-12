@@ -18,7 +18,7 @@ export const authService = {
         id: user.id,
         name: user.name,
         email: user.email,
-        imageUrl: user?.imageUrl?.path,
+        profileImage: user?.profileImage?.path,
       },
     });
 
