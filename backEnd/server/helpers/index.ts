@@ -1,2 +1,5 @@
 export * from './storeFile'
 export * from './removeFile'
+export * from './toHttpError'
+export * from './constructUrlByFilePath'
+export * from './validate'

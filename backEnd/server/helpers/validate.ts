@@ -1,6 +1,6 @@
-import type { H3Event } from "h3";
+
 import { z } from "zod";
-import { ErrorTypes } from "../types";
+
 import { httpErrorFactory } from "../errors/httpErrorFactory";
 
 export function validate<T>(

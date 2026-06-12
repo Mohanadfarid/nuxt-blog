@@ -12,14 +12,13 @@ export const authService = {
     const passwordValid = await verifyPassword(user.password, data.password);
     if (!passwordValid) throw httpErrorFactory.auth();
 
-    // to do handle actual login (session and stuff)
-    console.log(user);
+
     await setUserSession(event, {
       user: {
         id: user.id,
         name: user.name,
         email: user.email,
-        imageUrl: user.imageUrl.path,
+        imageUrl: user?.imageUrl?.path,
       },
     });
 

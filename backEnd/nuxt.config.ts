@@ -9,8 +9,13 @@ export default defineNuxtConfig({
     storage: {
       uploads: {
         driver: "fs",
-        base: "./uploads",
+        base: "./public/uploads",
       },
+    },
+  },
+  runtimeConfig: {
+    public: {
+      baseUrl: process.env.NUXT_PUBLIC_BASE_URL,
     },
   },
 });
