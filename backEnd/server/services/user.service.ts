@@ -9,8 +9,6 @@ import type { CreateUserDto, UpdateUserDto } from "../schemas";
 
 export const userService = {
   async createUser(data: CreateUserDto) {
-
-
     const emailExist = await userRepository.findByEmail(data.email);
 
     if (emailExist) {
@@ -22,7 +20,7 @@ export const userService = {
     const storedFileMeta = await storeFile(data.file);
 
     try {
-      const createdFile = await mediaService.createMedia(storedFileMeta, {
+      const createdFile = await mediaService.createMedia([storedFileMeta], {
         session,
       });
 
@@ -39,12 +37,10 @@ export const userService = {
       const user = await userRepository.create(validData, { session });
       await session.commitTransaction();
       return user[0];
-
     } catch (error) {
       await session.abortTransaction();
       await removeFile(storedFileMeta.storedName);
       throw error;
-
     } finally {
       await session.endSession();
     }

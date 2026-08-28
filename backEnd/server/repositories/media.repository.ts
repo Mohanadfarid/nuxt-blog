@@ -3,7 +3,8 @@ import type { CreateMediaDto } from "../types";
 
 export const mediaRepository = {
   async create(data: CreateMediaDto, options?: any) {
-    return await Media.create([data], options);
+    console.log("data in repository", data);
+    return await Media.create(data, options);
   },
 
   async findById(id: string) {

@@ -19,4 +19,21 @@ export const errorFactory = {
       errors: [],
     });
   },
+
+  notFound(message?: string) {
+    return new AppError({
+      message: message || "Resource not found",
+      statusCode: 404,
+      type: ErrorTypes.NOT_FOUND_ERROR,
+      errors: [],
+    });
+  },
+  conflict(message?: string) {
+    return new AppError({
+      message: message || "Resource conflict",
+      statusCode: 409,
+      type: ErrorTypes.CONFLICT_ERROR,
+      errors: [],
+    });
+  },
 };

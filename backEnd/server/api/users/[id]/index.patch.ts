@@ -8,6 +8,6 @@ export default defineAuthHandler(async (event) => {
   const validData = validate<UpdateUserDto>(updateUserSchema, body);
 
   const updatedUser = await userService.updateUser(userId, validData);
-  console.log(validData);
+
   return { message: "patch user by id : " + userId, updatedUser };
 });

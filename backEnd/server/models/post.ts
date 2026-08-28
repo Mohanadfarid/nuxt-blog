@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { Schema, type InferSchemaType } from "mongoose";
 import { defineMongooseModel } from "#nuxt/mongoose";
 
 const postSchema = new Schema(
@@ -43,6 +43,8 @@ const postSchema = new Schema(
     timestamps: true,
   },
 );
+
+export type PostType = InferSchemaType<typeof postSchema>;
 
 export const Post = defineMongooseModel({
   name: "Post",
