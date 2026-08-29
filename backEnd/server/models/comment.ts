@@ -8,17 +8,19 @@ const commentSchema = new Schema(
       ref: "Post",
       required: true,
     },
-    parentComment: {
-      type: Schema.Types.ObjectId,
-      ref: "Comment",
-      default: null,
-    },
+    replies: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+        default: null,
+      },
+    ],
     author: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    commentBody: {
+    Body: {
       type: String,
       required: true,
     },
